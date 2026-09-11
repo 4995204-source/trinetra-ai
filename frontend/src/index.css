@@ -1,0 +1,273 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-dark text-white font-sans antialiased;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  #root {
+    @apply h-full;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-card;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/40 rounded-full transition-colors;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/60;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 180, 255, 0.4) #111827;
+  }
+
+  ::selection {
+    @apply bg-primary/30 text-white;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary/50 ring-offset-2 ring-offset-dark;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-dark-card/80 backdrop-blur-sm border border-dark-border rounded-xl shadow-lg;
+  }
+
+  .glass-card-hover {
+    @apply hover:border-primary/30 hover:shadow-primary/5 hover:shadow-xl transition-all duration-300;
+  }
+
+  .status-dot {
+    @apply inline-block w-2.5 h-2.5 rounded-full;
+  }
+
+  .status-dot.online {
+    @apply bg-success animate-pulse;
+  }
+
+  .status-dot.offline {
+    @apply bg-danger;
+  }
+
+  .status-dot.warning {
+    @apply bg-warning animate-pulse;
+  }
+
+  .live-badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold text-success bg-success/10 rounded-full border border-success/20;
+  }
+
+  .live-badge .dot {
+    @apply w-1.5 h-1.5 bg-success rounded-full animate-pulse;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:text-white hover:bg-dark-hover transition-all duration-200 cursor-pointer relative;
+  }
+
+  .sidebar-link.active {
+    @apply text-primary bg-primary/10 border border-primary/20;
+  }
+
+  .kpi-value {
+    @apply text-2xl font-bold text-white;
+  }
+
+  .kpi-label {
+    @apply text-sm text-gray-400 font-medium;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-primary hover:bg-primary-dark text-white font-medium rounded-lg transition-all duration-200 shadow-lg shadow-primary/20 hover:shadow-primary/30;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-dark-hover hover:bg-dark-border text-white font-medium rounded-lg transition-all duration-200 border border-dark-border;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 bg-dark-hover border border-dark-border rounded-lg text-white placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-200;
+  }
+
+  .select-field {
+    @apply w-full px-4 py-2.5 bg-dark-hover border border-dark-border rounded-lg text-white focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-200 appearance-none;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply bg-success/20 text-success;
+  }
+
+  .badge-danger {
+    @apply bg-danger/20 text-danger;
+  }
+
+  .badge-warning {
+    @apply bg-warning/20 text-warning;
+  }
+
+  .badge-primary {
+    @apply bg-primary/20 text-primary;
+  }
+
+  .badge-gray {
+    @apply bg-dark-hover text-gray-400;
+  }
+
+  .timeline-item {
+    @apply relative pl-8 pb-6 last:pb-0;
+  }
+
+  .timeline-item::before {
+    @apply content-[''] absolute left-0 top-0 w-0.5 h-full bg-dark-border;
+  }
+
+  .timeline-item:last-child::before {
+    @apply h-6;
+  }
+
+  .timeline-item .timeline-dot {
+    @apply absolute left-0 top-1 -translate-x-1/2 w-4 h-4 rounded-full border-2 border-dark-card;
+  }
+
+  .timeline-item .timeline-dot.primary {
+    @apply bg-primary border-primary;
+  }
+
+  .timeline-item .timeline-dot.success {
+    @apply bg-success border-success;
+  }
+
+  .timeline-item .timeline-dot.warning {
+    @apply bg-warning border-warning;
+  }
+
+  .timeline-item .timeline-dot.danger {
+    @apply bg-danger border-danger;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.leaflet-container {
+  @apply bg-dark-hover;
+}
+
+.leaflet-popup-content-wrapper {
+  @apply bg-dark-card text-white rounded-lg shadow-xl border border-dark-border;
+}
+
+.leaflet-popup-tip {
+  @apply bg-dark-card;
+}
+
+.leaflet-control-zoom {
+  @apply border border-dark-border rounded-lg overflow-hidden;
+}
+
+.leaflet-control-zoom a {
+  @apply bg-dark-card text-white hover:bg-dark-hover border-dark-border;
+}
+
+.leaflet-control-zoom a:hover {
+  @apply bg-dark-hover;
+}
+
+.leaflet-tile {
+  filter: brightness(0.8) contrast(1.1);
+}
+
+.dark-map-tiles .leaflet-tile {
+  filter: brightness(0.7) contrast(1.2) saturate(0.8);
+}
+
+.leaflet-marker-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.recharts-tooltip-wrapper {
+  z-index: 100 !important;
+}
+
+.lucide {
+  @apply inline-block;
+}
+
+@media (max-width: 1024px) {
+  .sidebar-link span {
+    @apply text-sm;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    @apply overflow-auto;
+  }
+
+  .glass-card {
+    @apply rounded-lg;
+  }
+
+  .kpi-value {
+    @apply text-xl;
+  }
+}
+
+@media (max-width: 640px) {
+  .kpi-value {
+    @apply text-lg;
+  }
+
+  .kpi-label {
+    @apply text-xs;
+  }
+
+  .live-badge {
+    @apply text-xs px-2 py-0.5;
+  }
+}
